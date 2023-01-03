@@ -47,6 +47,9 @@ class Agent:
         if method == 'expected_sarsa':
             self.Q[state][action] = (1-alpha) * self.Q[state][action] + alpha * (reward + np.dot(self.Q[next_state], policy_s))
 
+    def select_best_action(self, state):
+        return np.argmax(self.Q[state])
+
     def _get_epsilon_greedy_probs(self, state, i_episode, eps=None):
         """ obtains the action probabilities corresponding to epsilon-greedy policy """
         epsilon = 1.0 / i_episode
